@@ -5,6 +5,6 @@ class Solution:
         ban = set(banned)
         
         word_count = Counter(word for word in words if word not in ban)
-        m, _ = word_count.most_common(1)[0]
+        m, t = word_count.most_common(1)[0]
         
         return m
