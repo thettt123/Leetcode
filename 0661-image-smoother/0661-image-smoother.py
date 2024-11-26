@@ -1,12 +1,20 @@
 class Solution:
-    def imageSmoother(self, M: List[List[int]]) -> List[List[int]]:
-        row, col = len(M), len(M[0])
-        res = [[0]*col for i in range(row)]
-        dir = [[0,0],[0,1],[0,-1],[1,0],[-1,0],[1,1],[-1,-1],[-1,1],[1,-1]]
+    def imageSmoother(self, img: List[List[int]]) -> List[List[int]]:
+        ans=[]
+        n=len(img)
+        m=len(img[0])
         
-        for i in range(row):
-            for j in range(col):
-                temp = [M[i+m][j+n] for m,n in dir if 0<=i+m<row and 0<=j+n<col]
-                res[i][j] = sum(temp)//len(temp)
+        for r,row in enumerate(img):
+            ans.append([])
+            for c,col in enumerate(row):
+                s=0
+                count=0
+                for dx in range(-1,2):
+                    for dy in range(-1,2):
+                        if 0<=r+dx<n and 0<=c+dy<m:
+                            s+=img[r+dx][c+dy]
+                            count+=1
+                            
+                ans[-1].append(s//count)
                 
-        return res
+        return ans                     
