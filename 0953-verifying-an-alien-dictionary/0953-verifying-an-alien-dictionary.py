@@ -1,12 +1,15 @@
 class Solution:
     def isAlienSorted(self, words: List[str], order: str) -> bool:
-            h = {ch: i for i, ch in enumerate(order)}
-            prev = list(h[ch] for ch in words[0])
-            
-            for i in range(1, len(words)):
-                cur = list(h[ch] for ch in words[i])
-                if cur < prev:
-                    return False
-                prev = cur
+        d = {char:i for i,char in enumerate(order)}
+
+        def comp(w1, w2):
+            for c1, c2 in zip(w1, w2):
+                if d[c1] < d[c2]:
+                    return True
                 
-            return True
+                elif d[c2] < d[c1]:
+                    return False
+            return len(w1) <= len(w2)
+
+        return all(comp(words[i],words[i+1]) for i in range(len(words)-1))
+        
