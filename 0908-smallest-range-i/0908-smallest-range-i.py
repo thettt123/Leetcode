@@ -1,6 +1,6 @@
 class Solution:
     def smallestRangeI(self, nums: List[int], k: int) -> int:
-        x=max(nums)
-        y=min(nums)
+        a = max(nums)
+        b = min(nums)
         
-        return max(0,(x-k)-(y+k))
+        return max(0,(a-k)-(b+k))
